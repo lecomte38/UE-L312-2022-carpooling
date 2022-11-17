@@ -34,11 +34,11 @@ class CarsService
         $carsDTO = $dataBaseService->getCars();
         if (!empty($carsDTO)) {
             foreach ($carsDTO as $carDTO) {
-                $user = new User();
-                $user->setId($userDTO['id']);
-                $user->setModel($userDTO['model']);
-                $user->setNbSeat($userDTO['nbSeat']);
-                $user->setOwner($userDTO['owner']);
+                $car = new Car();
+                $car->setId($carDTO['id']);
+                $car->setModel($carDTO['model']);
+                $car->setNbSeat($carDTO['nbSeat']);
+                $car->setOwner($carDTO['owner']);
                 $cars[] = $car;
             }
         }

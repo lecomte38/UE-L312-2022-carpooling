@@ -44,15 +44,15 @@ class CarsController
 
         // Get all users :
         $CarsService = new CarsService();
-        $Cars = $CarsService->getCars();
+        $cars = $CarsService->getCars();
 
         // Get html :
         foreach ($cars as $car) {
             $html .=
-                '#' . $user->getId() . ' ' .
-                $user->getModel() . ' ' .
-                $user->getNbSeat() . ' ' .
-                $user->getOwner() . ' ' . '<br />';
+                '#' . $car->getId() . ' ' .
+                $car->getModel() . ' ' .
+                $car->getNbSeat() . ' ' .
+                $car->getOwner() . ' ' . '<br />';
         }
 
         return $html;
@@ -71,7 +71,7 @@ class CarsController
             isset($_POST['nbSeat']) &&
             isset($_POST['owner'])) {
             // Update the car :
-            $usersService = new CarsService();
+            $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 $_POST['id'],
                 $_POST['model'],
