@@ -76,7 +76,7 @@ class ReservationsController
             isset($_POST['lastnameUser'])) {
             // Update the reservation :
             $reservationsService = new ReservationsService();
-            $isOk = $reservationsService->setReservations(
+            $isOk = $reservationsService->setReservation(
                 $_POST['id'],
                 $_POST['idCarpoolAd'],
                 $_POST['nameCarpoolAd'],
@@ -103,7 +103,7 @@ class ReservationsController
         // If the form have been submitted :
         if (isset($_POST['id'])) {
             // Delete the reservation :
-            $reservationsService = new CarpoolAdsService();
+            $reservationsService = new ReservationsService();
             $isOk = $reservationsService->deleteReservation($_POST['id']);
             if ($isOk) {
                 $html = 'Réservation supprimé avec succès.';
