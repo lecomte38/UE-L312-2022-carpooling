@@ -61,8 +61,8 @@ class CarpoolAdsController
                 $carpoolAd->getCar() . ' ' .
                 $carpoolAd->getAdvertiser() . ' ' .
                 $carpoolAd->getDeparturePlace() . ' ' .
-                $carpoolAd->getDepartureDate()->format('d-m-Y') . '<br />';
-                $carpoolAd->getArrivalPlace() . ' ' .
+                $carpoolAd->getDepartureDate()->format('d-m-Y') . '<br />'.
+                $carpoolAd->getArrivalPlace() . ' ' ;
         }
 
         return $html;
