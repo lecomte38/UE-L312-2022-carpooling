@@ -52,7 +52,7 @@ class ReservationsController
         foreach ($reservations as $reservation) {
             $html .=
                 '#' . $reservation->getId() . ' ' .
-                $reservation->getIdCarpoolAd() . ' ' .
+                '#' . $reservation->getIdCarpoolAd() . ' ' .
                 $reservation->getNameCarpoolAd() . ' ' .
                 $reservation->getFirstnameUser() . ' ' .
                 $reservation->getLastnameUser() . ' ' ;
@@ -62,7 +62,7 @@ class ReservationsController
     }
 
     /**
-     * Update the user.
+     * Update the reservation.
      */
     public function updateReservation(): string
     {

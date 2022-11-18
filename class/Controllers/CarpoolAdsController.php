@@ -69,7 +69,7 @@ class CarpoolAdsController
     }
 
     /**
-     * Update the user.
+     * Update the carpool ad.
      */
     public function updateCarpoolAd(): string
     {
