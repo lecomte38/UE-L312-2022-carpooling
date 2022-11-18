@@ -57,12 +57,12 @@ class CarpoolAdsService
     /**
      * Delete an carpool ad.
      */
-    public function deleteUser(string $id): bool
+    public function deleteCarpoolAd(string $id): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
-        $isOk = $dataBaseService->deleteUser($id);
+        $isOk = $dataBaseService->deleteCarpoolAd($id);
 
         return $isOk;
     }
