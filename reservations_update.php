@@ -5,7 +5,7 @@ use App\Controllers\ReservationsController;
 require __DIR__ . '/vendor/autoload.php';
 
 $controller = new ReservationsController();
-echo $controller->updateReservations();
+echo $controller->updateReservation();
 ?>
 
 <p>Mise à jour d'une réservation</p>
