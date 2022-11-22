@@ -104,4 +104,145 @@ class DataBaseService
 
         return $isOk;
     }
+
+    /**
+     * Create an carpool ad.
+     */
+    public function createCarpoolAd(string $name, string $idCar, string $idAdvertiser, string $departurePlace, string $arrivalPlace): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'name' => $name,
+            'idCar' => $idCar,
+            'idAdvertiser' => $idAdvertiser,
+            'departurePlace' => $departurePlace,
+            'arrivalPlace' => $arrivalPlace,
+        ];
+        $sql = 'INSERT INTO carpool_ads (name, idCar, idAdvertiser, departurePlace, arrivalPlace) VALUES (:name, :idCar, :idAdvertiser, :departurePlace, :arrivalPlace)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Return all carpoll ads.
+     */
+    public function getCarpoolAds(): array
+    {
+        $carpoolAds = [];
+
+        $sql = 'SELECT * FROM carpool_ads';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $carpoolAds = $results;
+        }
+
+        return $carpoolAds;
+    }
+
+    /**
+     * Update an user.
+     */
+    public function updateCarpoolAd(string $name, string $idCar, string $idAdvertiser, string $departurePlace, string $arrivalPlace): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'name' => $name,
+            'idCar' => $idCar,
+            'idAdvertiser' => $idAdvertiser,
+            'departurePlace' => $departurePlace,
+            'arrivalPlace' => $arrivalPlace,
+        ];
+        $sql = 'UPDATE carpool_ads SET name = :name, idCar = :idCar, idAdvertiser = :idAdvertiser, departurePlace = :departurePlace, arrivalPlace = :arrivalPlace WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Delete an user.
+     */
+    public function deleteCarpoolAd(string $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM carpool_ads WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Create an car.
+     */
+    
+
+    /**
+     * Return all cars.
+     */
+    
+
+    /**
+     * Update an car.
+     */
+    
+
+    /**
+     * Delete an car.
+     */
+
+
+
+    /**
+     * Create an reservation.
+     */
+    public function createReservation(string $idCarpoolAd, string $idClient): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'idCarpoolAd' => $idCarpoolAd,
+            'idClient' => $idClient,
+        ];
+        $sql = 'INSERT INTO reservations (idCarpoolAd, idClient) VALUES (:idCarpoolAd, :idClient)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Return all reservations.
+     */
+    public function getReservations(): array
+    {
+        $reservations = [];
+
+        $sql = 'SELECT * FROM reservations';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $reservations = $results;
+        }
+
+        return $reservations;
+    }
+
+    /**
+     * Update an reservation.
+     */
+    
+
+    /**
+     * Delete an reservation.
+     */
 }
