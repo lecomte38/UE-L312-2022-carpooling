@@ -17,16 +17,13 @@ echo $controller->updateCarpoolAd();
     <input type="text" name="name">
     <br />
     <label for="car">Voiture :</label>
-    <input type="text" name="car">
+    <input type="text" name="idCar">
     <br />
     <label for="advertiser">Annonceur :</label>
-    <input type="text" name="advertiser">
+    <input type="text" name="idAdvertiser">
     <br />
     <label for="departurePlace">Lieu de départ :</label>
     <input type="text" name="departurePlace">
-    <br />
-    <label for="departureDateTime">Date de départ au format dd-mm-yyyy :</label>
-    <input type="text" name="departureDateTime">
     <br />
     <label for="arrivalPlace">Lieu d'arrivé :</label>
     <input type="text" name="arrivalPlace">

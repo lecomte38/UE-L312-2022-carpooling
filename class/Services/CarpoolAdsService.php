@@ -10,16 +10,15 @@ class CarpoolAdsService
     /**
      * Create or update an carpool ad.
      */
-    public function setCarpoolAd(?string $id, string $name, string $car, string $advertiser, string $departurePlace, string $departureDate, string $arrivalPlace): bool
+    public function setCarpoolAd(?string $id, string $name, string $idCar, string $idAdvertiser, string $departurePlace, string $arrivalPlace): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
-        $departureDateTime = new DateTime($departureDate);
         if (empty($id)) {
-            $isOk = $dataBaseService->createCarpoolAd($name, $car, $advertiser, $departurePlace, $departureDateTime, $arrivalPlace);
+            $isOk = $dataBaseService->createCarpoolAd($name, $idCar, $idAdvertiser, $departurePlace, $arrivalPlace);
         } else {
-            $isOk = $dataBaseService->updateCarpoolAd($id, $name, $car, $advertiser, $departurePlace, $departureDateTime, $arrivalPlace);
+            $isOk = $dataBaseService->updateCarpoolAd($id, $name, $idCar, $idAdvertiser, $departurePlace, $arrivalPlace);
         }
 
         return $isOk;
@@ -39,14 +38,10 @@ class CarpoolAdsService
                 $carpoolAd = new CarpoolAd();
                 $carpoolAd->setId($carpoolAdDTO['id']);
                 $carpoolAd->setName($carpoolAdDTO['name']);
-                $carpoolAd->setCar($carpoolAdDTO['car']);
-                $carpoolAd->setAdvertiser($carpoolAdDTO['advertiser']);
+                $carpoolAd->setIdCar($carpoolAdDTO['idCar']);
+                $carpoolAd->setIdAdvertiser($carpoolAdDTO['idAdvertiser']);
                 $carpoolAd->setDeparturePlace($carpoolAdDTO['departurePlace']);
-                $date = new DateTime($carpoolAdDTO['departureDate']);
                 $carpoolAd->setArrivalPlace($carpoolAdDTO['arrivalPlace']);
-                if ($date !== false) {
-                    $carpoolAd->setDepartureDate($date);
-                }
                 $carpoolAds[] = $carpoolAd;
             }
         }

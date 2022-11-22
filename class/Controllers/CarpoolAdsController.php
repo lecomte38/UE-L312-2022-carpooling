@@ -15,8 +15,8 @@ class CarpoolAdsController
 
         // If the form have been submitted :
         if (isset($_POST['name']) &&
-            isset($_POST['car']) &&
-            isset($_POST['advertiser']) &&
+            isset($_POST['idCar']) &&
+            isset($_POST['idAdvertiser']) &&
             isset($_POST['departurePlace']) &&
             isset($_POST['departureDateTime']) &&
             isset($_POST['arrivalPlace'])) {
@@ -25,10 +25,9 @@ class CarpoolAdsController
             $isOk = $carpoolAdsService->setCarpoolAd(
                 null,
                 $_POST['name'],
-                $_POST['car'],
-                $_POST['advertiser'],
+                $_POST['idCar'],
+                $_POST['idAdvertiser'],
                 $_POST['departurePlace'],
-                $_POST['lastname'],
                 $_POST['departureDateTime'],
                 $_POST['arrivalPlace']
             );
@@ -56,10 +55,10 @@ class CarpoolAdsController
         // Get html :
         foreach ($carpoolAds as $carpoolAd) {
             $html .=
-                '#' . $carpoolAd->getId() . ' ' .
+                '#' . $carpoolAd->getIdCarpoolAd() . ' ' .
                 $carpoolAd->getName() . ' ' .
-                $carpoolAd->getCar() . ' ' .
-                $carpoolAd->getAdvertiser() . ' ' .
+                $carpoolAd->getIdCar() . ' ' .
+                $carpoolAd->getIdAdvertiser() . ' ' .
                 $carpoolAd->getDeparturePlace() . ' ' .
                 $carpoolAd->getDepartureDate()->format('d-m-Y') . '<br />'.
                 $carpoolAd->getArrivalPlace() . ' ' ;
@@ -78,8 +77,8 @@ class CarpoolAdsController
         // If the form have been submitted :
         if (isset($_POST['id']) &&
             isset($_POST['name']) &&
-            isset($_POST['car']) &&
-            isset($_POST['advertiser']) &&
+            isset($_POST['idCar']) &&
+            isset($_POST['idAdvertiser']) &&
             isset($_POST['departurePlace']) &&
             isset($_POST['departureDateTime']) &&
             isset($_POST['arrivalPlace'])) {
@@ -88,10 +87,9 @@ class CarpoolAdsController
             $isOk = $carpoolAdsService->setCarpoolAd(
                 $_POST['id'],
                 $_POST['name'],
-                $_POST['car'],
-                $_POST['advertiser'],
+                $_POST['idCar'],
+                $_POST['idAdvertiser'],
                 $_POST['departurePlace'],
-                $_POST['lastname'],
                 $_POST['departureDateTime'],
                 $_POST['arrivalPlace']
             );

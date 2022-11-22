@@ -10,10 +10,9 @@ class CarpoolAd
     // Declaring the variables
     private $id;
     private $name;
-    private $car;
-    private $advertiser;
+    private $idCar;
+    private $idAdvertiser;
     private $departurePlace;
-    private $departureDate;
     private $arrivalPlace;
 
     // Getter of id
@@ -41,27 +40,27 @@ class CarpoolAd
     }
 
     // Getter of car
-    public function getCar(): string
+    public function getIdCar(): string
     {
-        return $this->car;
+        return $this->idCar;
     }
 
     // Setter of car
-    public function setCar(string $car): void
+    public function setIdCar(string $idCar): void
     {
-        $this->car = $car;
+        $this->idCar = $idCar;
     }
 
     // Getter of advertiser
-    public function getAdvertiser(): string
+    public function getIdAdvertiser(): string
     {
-        return $this->advertiser;
+        return $this->idAdvertiser;
     }
 
     // Setter of advertiser
-    public function setAdvertiser(string $advertiser): void
+    public function setIdAdvertiser(string $idAdvertiser): void
     {
-        $this->advertiser = $advertiser;
+        $this->idAdvertiser = $idAdvertiser;
     }
 
     // Getter of departure place
@@ -74,18 +73,6 @@ class CarpoolAd
     public function setDeparturePlace(string $departurePlace): void
     {
         $this->departurePlace = $departurePlace;
-    }
-
-    // Getter of departure date
-    public function getDepartureDate(): DateTime
-    {
-        return $this->departureDate;
-    }
-
-    // Setter of departure date
-    public function setDepartureDate(DateTime $departureDate): void
-    {
-        $this->departureDate = $departureDate;
     }
 
     // Getter of arrival place
