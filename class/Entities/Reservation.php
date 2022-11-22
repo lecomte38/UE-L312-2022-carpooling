@@ -8,9 +8,7 @@ class Reservation
     // Declaring the variables
     private $id;
     private $idCarpoolAd;
-    private $nameCarpoolAd;
-    private $firstnameUser;
-    private $lastnameUser;
+    private $idClient; 
 
     // Getter of id
     public function getId(): string
@@ -36,39 +34,15 @@ class Reservation
         $this->idCarpoolAd = $idCarpoolAd;
     }
 
-    // Getter of carpool ad name
-    public function getNameCarpoolAd(): string
-    {
-        return $this->nameCarpoolAd;
-    }
-
-    // Setter of carpool ad name
-    public function setNameCarpoolAd(string $nameCarpoolAd): void
-    {
-        $this->nameCarpoolAd = $nameCarpoolAd;
-    }
-
-    // Getter of user firstname
-    public function getFirstnameUser(): string
-    {
-        return $this->firstnameUser;
-    }
-
-    // Setter of user firstname
-    public function setFirstnameUser(string $firstnameUser): void
-    {
-        $this->firstnameUser = $firstnameUser;
-    }
-
     // Getter of user lastname
-    public function getLastnameUser(): string
+    public function getIdClient(): string
     {
-        return $this->lastnameUser;
+        return $this->idClient;
     }
 
     // Setter of user lastname
-    public function setLastnameUser(string $lastnameUser): void
+    public function setIdClient(string $idClient): void
     {
-        $this->lastnameUser = $lastnameUser;
+        $this->idClient = $idClient;
     }
 }
