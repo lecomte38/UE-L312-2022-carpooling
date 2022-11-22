@@ -15,17 +15,13 @@ class ReservationsController
 
         // If the form have been submitted :
         if (isset($_POST['idCarpoolAd']) &&
-            isset($_POST['nameCarpoolAd']) &&
-            isset($_POST['firstnameUser']) &&
-            isset($_POST['lastnameUser'])) {
+            isset($_POST['idClient'])) {
             // Create the reservation :
             $ReservationsService = new ReservationsService();
             $isOk = $ReservationsService->setReservation(
                 null,
                 $_POST['idCarpoolAd'],
-                $_POST['nameCarpoolAd'],
-                $_POST['firstnameUser'],
-                $_POST['lastnameUser']
+                $_POST['idClient']
             );
             if ($isOk) {
                 $html = 'Réservation créée avec succès.';
@@ -53,9 +49,7 @@ class ReservationsController
             $html .=
                 '#' . $reservation->getId() . ' ' .
                 '#' . $reservation->getIdCarpoolAd() . ' ' .
-                $reservation->getNameCarpoolAd() . ' ' .
-                $reservation->getFirstnameUser() . ' ' .
-                $reservation->getLastnameUser() . ' ' ;
+                '#' . $reservation->getIdClient() . ' ' ;
         }
 
         return $html;
@@ -71,17 +65,13 @@ class ReservationsController
         // If the form have been submitted :
         if (isset($_POST['id']) &&
             isset($_POST['idCarpoolAd']) &&
-            isset($_POST['nameCarpoolAd']) &&
-            isset($_POST['firstnameUser']) &&
-            isset($_POST['lastnameUser'])) {
+            isset($_POST['idClient'])) {
             // Update the reservation :
             $reservationsService = new ReservationsService();
             $isOk = $reservationsService->setReservation(
                 $_POST['id'],
                 $_POST['idCarpoolAd'],
-                $_POST['nameCarpoolAd'],
-                $_POST['firstnameUser'],
-                $_POST['lastnameUser']
+                $_POST['idClient']
             );
             if ($isOk) {
                 $html = 'Réservation mise à jour avec succès.';
