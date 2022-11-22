@@ -14,16 +14,18 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['model']) &&
+        if (isset($_POST['brand']) &&
+            isset($_POST['model']) &&
             isset($_POST['nbSeat']) &&
-            isset($_POST['owner'])) {
+            isset($_POST['idOwner'])) {
             // Create the user :
             $CarsService = new CarsService();
             $isOk = $CarsService->setCar(
                 null,
+                $_POST['brand'],
                 $_POST['model'],
                 $_POST['nbSeat'],
-                $_POST['owner']
+                $_POST['idOwner']
             );
             if ($isOk) {
                 $html = 'Voiture créée avec succès.';
@@ -50,9 +52,10 @@ class CarsController
         foreach ($cars as $car) {
             $html .=
                 '#' . $car->getId() . ' ' .
+                $car->getBrand() . ' ' .
                 $car->getModel() . ' ' .
                 $car->getNbSeat() . ' ' .
-                $car->getOwner() . ' ' . '<br />';
+                $car->getIdOwner() . ' ' . '<br />';
         }
 
         return $html;
@@ -67,16 +70,18 @@ class CarsController
 
         // If the form have been submitted :
         if (isset($_POST['id']) &&
+            isset($_POST['brand']) &&
             isset($_POST['model']) &&
             isset($_POST['nbSeat']) &&
-            isset($_POST['owner'])) {
+            isset($_POST['idOwner'])) {
             // Update the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 $_POST['id'],
+                $_POST['brand'],
                 $_POST['model'],
                 $_POST['nbSeat'],
-                $_POST['owner']
+                $_POST['idOwner']
             );
             if ($isOk) {
                 $html = 'Voiture mis à jour avec succès.';

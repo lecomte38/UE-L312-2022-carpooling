@@ -1,8 +1,8 @@
 <?php
 
-use App\Controllers\ReservationsController;
+use App\Controllers\CarsController;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$controller = new ReservationsController();
-echo $controller->getReservations();
+$controller = new CarsController();
+echo $controller->getCars();

@@ -7,9 +7,10 @@ class Car
 {
     // Declaration the variables
     private $id;
+    private $brand;
     private $model;
     private $nbSeat;
-    private $owner;
+    private $idOwner;
 
     // Getter of id
     public function getId(): string
@@ -21,6 +22,18 @@ class Car
     public function setId(string $id): void
     {
         $this->id = $id;
+    }
+
+    // Getter of brand
+    public function getBrand(): string
+    {
+        return $this->brand;
+    }
+
+    // Setter of brand
+    public function setBrand(string $brand): void
+    {
+        $this->brand = $brand;
     }
 
     // Getter of model
@@ -47,15 +60,15 @@ class Car
         $this->nbSeat = $nbSeat;
     }
 
-    // Getter of owner
-    public function getOwner(): string
+    // Getter of idOwner
+    public function getIdOwner(): string
     {
-        return $this->owner;
+        return $this->idOwner;
     }
 
-    // Setter of owner
-    public function setOwner(string $owner): void
+    // Setter of idOwner
+    public function setIdOwner(string $idOwner): void
     {
-        $this->owner = $owner;
+        $this->idOwner = $idOwner;
     }
 }
