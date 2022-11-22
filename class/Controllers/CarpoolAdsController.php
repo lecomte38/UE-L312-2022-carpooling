@@ -18,7 +18,6 @@ class CarpoolAdsController
             isset($_POST['idCar']) &&
             isset($_POST['idAdvertiser']) &&
             isset($_POST['departurePlace']) &&
-            isset($_POST['departureDateTime']) &&
             isset($_POST['arrivalPlace'])) {
             // Create the carpool ad :
             $carpoolAdsService = new CarpoolAdsService();
@@ -28,7 +27,6 @@ class CarpoolAdsController
                 $_POST['idCar'],
                 $_POST['idAdvertiser'],
                 $_POST['departurePlace'],
-                $_POST['departureDateTime'],
                 $_POST['arrivalPlace']
             );
             if ($isOk) {
@@ -55,12 +53,11 @@ class CarpoolAdsController
         // Get html :
         foreach ($carpoolAds as $carpoolAd) {
             $html .=
-                '#' . $carpoolAd->getIdCarpoolAd() . ' ' .
+                '#' . $carpoolAd->getId() . ' ' .
                 $carpoolAd->getName() . ' ' .
                 $carpoolAd->getIdCar() . ' ' .
                 $carpoolAd->getIdAdvertiser() . ' ' .
                 $carpoolAd->getDeparturePlace() . ' ' .
-                $carpoolAd->getDepartureDate()->format('d-m-Y') . '<br />'.
                 $carpoolAd->getArrivalPlace() . ' ' ;
         }
 
@@ -80,7 +77,6 @@ class CarpoolAdsController
             isset($_POST['idCar']) &&
             isset($_POST['idAdvertiser']) &&
             isset($_POST['departurePlace']) &&
-            isset($_POST['departureDateTime']) &&
             isset($_POST['arrivalPlace'])) {
             // Update the carpool ad :
             $carpoolAdsService = new CarpoolAdsService();
@@ -90,7 +86,6 @@ class CarpoolAdsController
                 $_POST['idCar'],
                 $_POST['idAdvertiser'],
                 $_POST['departurePlace'],
-                $_POST['departureDateTime'],
                 $_POST['arrivalPlace']
             );
             if ($isOk) {

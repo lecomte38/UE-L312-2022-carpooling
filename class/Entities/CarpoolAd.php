@@ -2,8 +2,6 @@
 
 namespace App\Entities;
 
-use DateTime;
-
 // Declaration of CarpoolAd class
 class CarpoolAd
 {
