@@ -9,15 +9,15 @@ class ReservationsService
     /**
      * Create or update a reservation.
      */
-    public function setReservation(?string $id, string $idCarpoolAd, int $nameCarpoolAd, string $firstnameUser, string $lastnameUser): bool
+    public function setReservation(?string $id, string $idCarpoolAd, int $idClient): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
         if (empty($id)) {
-            $isOk = $dataBaseService->createReservation($idCarpoolAd, $nameCarpoolAd, $firstnameUser, $lastnameUser);
+            $isOk = $dataBaseService->createReservation($idCarpoolAd, $idClient);
         } else {
-            $isOk = $dataBaseService->updateReservation($id, $idCarpoolAd, $nameCarpoolAd, $firstnameUser, $lastnameUser);
+            $isOk = $dataBaseService->updateReservation($id, $idCarpoolAd, $idClient);
         }
 
         return $isOk;
@@ -37,9 +37,7 @@ class ReservationsService
                 $reservation = new Reservation();
                 $reservation->setId($reservationDTO['id']);
                 $reservation->setIdCarpoolAd($reservationDTO['idCarpoolAd']);
-                $reservation->setNameCarpoolAd($reservationDTO['nameCarpoolAd']);
-                $reservation->setFirstnameUser($reservationDTO['firstnameUser']);
-                $reservation->setLastnameUser($reservationDTO['lastnameUser']);
+                $reservation->setIdClient($reservationDTO['idClient']);
                 $reservations[] = $reservation;
             }
         }
