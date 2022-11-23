@@ -49,7 +49,7 @@ class ReservationsController
             $html .=
                 '#' . $reservation->getId() . ' ' .
                 '#' . $reservation->getIdCarpoolAd() . ' ' .
-                '#' . $reservation->getIdClient() . ' ' ;
+                '#' . $reservation->getIdClient() . ' ' . '<br />';
         }
 
         return $html;

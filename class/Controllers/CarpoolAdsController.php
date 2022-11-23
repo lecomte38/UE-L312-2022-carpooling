@@ -58,7 +58,7 @@ class CarpoolAdsController
                 $carpoolAd->getIdCar() . ' ' .
                 $carpoolAd->getIdAdvertiser() . ' ' .
                 $carpoolAd->getDeparturePlace() . ' ' .
-                $carpoolAd->getArrivalPlace() . ' ' ;
+                $carpoolAd->getArrivalPlace() . ' ' . '<br />';
         }
 
         return $html;
