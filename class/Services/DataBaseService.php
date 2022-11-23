@@ -233,7 +233,7 @@ class DataBaseService
             'nbSeat' => $nbSeat,
             'idOwner' => $idOwner,
         ];
-        $sql = 'UPDATE cars SET name = :name, brand = :brand, model = :model, nbSeat = :nbSeat, idOwner = :idOwner WHERE id = :id;';
+        $sql = 'UPDATE cars SET brand = :brand, model = :model, nbSeat = :nbSeat, idOwner = :idOwner WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
