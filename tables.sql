@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 22 nov. 2022 à 16:42
+-- Généré le : mer. 23 nov. 2022 à 15:48
 -- Version du serveur : 8.0.26-0ubuntu0.20.04.2
 -- Version de PHP : 8.0.10
 
@@ -36,6 +36,15 @@ CREATE TABLE `carpool_ads` (
   `arrivalPlace` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Déchargement des données de la table `carpool_ads`
+--
+
+INSERT INTO `carpool_ads` (`id`, `name`, `idCar`, `idAdvertiser`, `departurePlace`, `arrivalPlace`) VALUES
+(1, 'Trajet Lille/Paris', 3, 3, 'Lille', 'Paris'),
+(2, 'Voyage France/Allemagne', 4, 5, 'France', 'Allemagne'),
+(3, 'Covoiturage Cambrai/Valenciennes', 1, 1, 'Cambrai', 'Valenciennes');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +59,17 @@ CREATE TABLE `cars` (
   `idOwner` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Déchargement des données de la table `cars`
+--
+
+INSERT INTO `cars` (`id`, `brand`, `model`, `nbSeat`, `idOwner`) VALUES
+(1, 'PEUGEOT', '3008', 5, 3),
+(2, 'FIAT', '500', 4, 2),
+(3, 'TOYOTA', 'AE86', 4, 4),
+(4, 'LAMBORGHINI', 'Aventador LP 700-4', 2, 5),
+(5, 'RENAULT', 'CLIO', 5, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +81,15 @@ CREATE TABLE `reservations` (
   `idCarpoolAd` int NOT NULL,
   `idClient` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Déchargement des données de la table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `idCarpoolAd`, `idClient`) VALUES
+(1, 2, 2),
+(2, 3, 5),
+(3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -83,7 +112,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `birthday`) VALUES
 (1, 'Vincent', 'Godé', 'hello@vincentgo.fr', '1990-11-08 00:00:00'),
 (2, 'Albert', 'Dupond', 'sonemail@gmail.com', '1985-11-08 00:00:00'),
-(3, 'Thomas', 'Dumoulin', 'sonemail2@gmail.com', '1985-10-08 00:00:00');
+(3, 'Thomas', 'Dumoulin', 'sonemail2@gmail.com', '1985-10-08 00:00:00'),
+(4, 'Nicolas', 'Lecomte', 'nicolaslovetoyota@orange.fr', '2002-09-07 00:00:00'),
+(5, 'Tom', 'Col', 'insanelamborghini@orange.fr', '2000-10-15 00:00:00');
 
 --
 -- Index pour les tables déchargées
@@ -126,25 +157,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `carpool_ads`
 --
 ALTER TABLE `carpool_ads`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
