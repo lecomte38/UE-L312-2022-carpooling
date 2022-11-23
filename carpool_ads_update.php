@@ -16,10 +16,10 @@ echo $controller->updateCarpoolAd();
     <label for="name">Titre :</label>
     <input type="text" name="name">
     <br />
-    <label for="car">Voiture :</label>
+    <label for="idCar">Voiture :</label>
     <input type="text" name="idCar">
     <br />
-    <label for="advertiser">Annonceur :</label>
+    <label for="idAdvertiser">Annonceur :</label>
     <input type="text" name="idAdvertiser">
     <br />
     <label for="departurePlace">Lieu de départ :</label>
