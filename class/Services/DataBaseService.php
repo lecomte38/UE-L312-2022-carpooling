@@ -202,7 +202,6 @@ class DataBaseService
         return $isOk;
     }
     
-
     /**
      * Return all cars.
      */
@@ -220,7 +219,6 @@ class DataBaseService
         return $cars;
     }
     
-
     /**
      * Update a car.
      */
@@ -242,7 +240,6 @@ class DataBaseService
         return $isOk;
     }
     
-
     /**
      * Delete a car.
      */
@@ -259,8 +256,6 @@ class DataBaseService
 
         return $isOk;
     }
-
-
 
     /**
      * Create a reservation.

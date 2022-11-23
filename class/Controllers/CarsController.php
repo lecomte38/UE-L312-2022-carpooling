@@ -40,11 +40,11 @@ class CarsController
     /**
      * Return the html for the read action.
      */
-    public function getUsers(): string
+    public function getCars(): string
     {
         $html = '';
 
-        // Get all users :
+        // Get all cars :
         $CarsService = new CarsService();
         $cars = $CarsService->getCars();
 

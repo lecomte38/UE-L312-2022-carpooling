@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Entities\CarpoolAd;
-use DateTime;
 
 class CarpoolAdsService
 {

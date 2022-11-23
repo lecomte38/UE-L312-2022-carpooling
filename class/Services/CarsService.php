@@ -7,7 +7,7 @@ use App\Entities\Car;
 class CarsService
 {
     /**
-     * Create or update an car.
+     * Create or update a car.
      */
     public function setCar(?string $id, string $brand, string $model, int $nbSeat, string $idOwner): bool
     {
@@ -28,7 +28,7 @@ class CarsService
      */
     public function getCars(): array
     {
-        $users = [];
+        $cars = [];
 
         $dataBaseService = new DataBaseService();
         $carsDTO = $dataBaseService->getCars();
@@ -48,7 +48,7 @@ class CarsService
     }
 
     /**
-     * Delete an car.
+     * Delete a car.
      */
     public function deleteCar(string $id): bool
     {
