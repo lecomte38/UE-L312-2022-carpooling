@@ -52,15 +52,30 @@ class CarpoolAdsController
 
         // Get html :
         foreach ($carpoolAds as $carpoolAd) {
+
+            // HTML of carpool ad car
+            $carHtml = '';
+            if (!empty($carpoolAd->getCar())) {
+                foreach ($carpoolAd->getCar() as $car) {
+                    $carHtml .= $car->getBrand() . ' ' . $car->getModel();
+                }
+            }
+
+            // HTML of carpool ad advertiser
+            $advertiserHtml = '';
+            if (!empty($carpoolAd->getAdvertiser())) {
+                foreach ($carpoolAd->getAdvertiser() as $advertiser) {
+                    $advertiserHtml .= $advertiser->getFirstname() . ' ' . $advertiser->getLastname();
+                }
+            }
+
             $html .=
                 '#' . $carpoolAd->getId() . ' ' .
                 $carpoolAd->getName() . ' ' .
-                $carpoolAd->getBrandCar() . ' ' .
-                $carpoolAd->getModelCar() . ' ' .
-                $carpoolAd->getFirstnameAdvertiser() . ' ' .
-                $carpoolAd->getLastnameAdvertiser() . ' ' .
+                $carHtml . ' ' .
+                $advertiserHtml . ' ' .
                 $carpoolAd->getDeparturePlace() . ' ' .
-                $carpoolAd->getArrivalPlace() . ' ' . '<br />';
+                $carpoolAd->getArrivalPlace() . '<br />';
         }
 
         return $html;

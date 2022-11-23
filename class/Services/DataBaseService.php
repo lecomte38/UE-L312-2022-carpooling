@@ -205,9 +205,7 @@ class DataBaseService
     {
         $carpoolAds = [];
 
-        $sql = 'SELECT `users`.`firstname` AS FirstnameAdvertiser, `users`.`lastname` AS LastnameAdvertiser, `cars`.`brand` AS BrandCar, `cars`.`model` AS ModelCar, carpool_ads.* FROM carpool_ads 
-                INNER JOIN users ON `carpool_ads`.`idAdvertiser` = `users`.`id`
-                INNER JOIN cars ON `carpool_ads`.`idCar` = `cars`.`id`';
+        $sql = 'SELECT * FROM carpool_ads';
         $query = $this->connection->query($sql);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         if (!empty($results)) {
@@ -215,6 +213,54 @@ class DataBaseService
         }
 
         return $carpoolAds;
+    }
+
+    /**
+     * Get carpool ad car of given car id.
+     */
+    public function getCarpoolAdCar(string $carId): array
+    {
+        $carpoolAdCar = [];
+
+        $data = [
+            'carId' => $carId,
+        ];
+        $sql = 'SELECT *
+                FROM cars
+                LEFT JOIN carpool_ads ON `carpool_ads`.`idCar` = `cars`.`id`
+                WHERE `carpool_ads`.`idCar` = :carId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $carpoolAdCar = $results;
+        }
+
+        return $carpoolAdCar;
+    }
+
+    /**
+     * Get user name of given advertiser id.
+     */
+    public function getCarpoolAdAdvertiser(string $advertiserId): array
+    {
+        $carpoolAdAdvertiser = [];
+
+        $data = [
+            'advertiserId' => $advertiserId,
+        ];
+        $sql = 'SELECT *
+                FROM users
+                LEFT JOIN carpool_ads ON `carpool_ads`.`idAdvertiser` = `users`.`id`
+                WHERE `carpool_ads`.`idAdvertiser` = :advertiserId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $carpoolAdAdvertiser = $results;
+        }
+
+        return $carpoolAdAdvertiser;
     }
 
     /**

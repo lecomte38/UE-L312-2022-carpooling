@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Entities\Car;
+use App\Entities\User;
 use App\Entities\CarpoolAd;
 
 class CarpoolAdsService
@@ -37,12 +39,19 @@ class CarpoolAdsService
                 $carpoolAd = new CarpoolAd();
                 $carpoolAd->setId($carpoolAdDTO['id']);
                 $carpoolAd->setName($carpoolAdDTO['name']);
-                $carpoolAd->setBrandCar($carpoolAdDTO['BrandCar']);
-                $carpoolAd->setModelCar($carpoolAdDTO['ModelCar']);
-                $carpoolAd->setFirstnameAdvertiser($carpoolAdDTO['FirstnameAdvertiser']);
-                $carpoolAd->setLastnameAdvertiser($carpoolAdDTO['LastnameAdvertiser']);
+                $carpoolAd->setIdCar($carpoolAdDTO['idCar']);
+                $carpoolAd->setIdAdvertiser($carpoolAdDTO['idAdvertiser']);
                 $carpoolAd->setDeparturePlace($carpoolAdDTO['departurePlace']);
                 $carpoolAd->setArrivalPlace($carpoolAdDTO['arrivalPlace']);
+
+                // Get car of this carpool ad :
+                $car = $this->getCarpoolAdCar($carpoolAdDTO['idCar']);
+                $carpoolAd->setCar($car);
+
+                // Get advertiser of this carpool ad :
+                $advertiser = $this->getCarpoolAdAdvertiser($carpoolAdDTO['idAdvertiser']);
+                $carpoolAd->setAdvertiser($advertiser);
+
                 $carpoolAds[] = $carpoolAd;
             }
         }
@@ -61,5 +70,55 @@ class CarpoolAdsService
         $isOk = $dataBaseService->deleteCarpoolAd($id);
 
         return $isOk;
+    }
+
+    /**
+     * Get carpool ad car of given car id.
+     */
+    public function getCarpoolAdCar(string $carId): array
+    {
+        $carpoolAdCar = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and cars :
+        $carpoolAdsCarDTO = $dataBaseService->getCarpoolAdCar($carId);
+        if (!empty($carpoolAdsCarDTO)) {
+            foreach ($carpoolAdsCarDTO as $carpoolAdCarDTO) {
+                $car = new Car();
+                $car->setId($carpoolAdCarDTO['id']);
+                $car->setBrand($carpoolAdCarDTO['brand']);
+                $car->setModel($carpoolAdCarDTO['model']);
+                $car->setNbSeat($carpoolAdCarDTO['nbSeat']);
+                $car->setIdOwner($carpoolAdCarDTO['idOwner']);
+                $carpoolAdCar[] = $car;
+            }
+        }
+
+        return $carpoolAdCar;
+    }
+
+    /**
+     * Get user of given advertiser id.
+     */
+    public function getCarpoolAdAdvertiser(string $advertiserId): array
+    {
+        $carpoolAdAdvertiser = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and cars :
+        $carpoolAdsAdvertiserDTO = $dataBaseService->getCarpoolAdAdvertiser($advertiserId);
+        if (!empty($carpoolAdsAdvertiserDTO)) {
+            foreach ($carpoolAdsAdvertiserDTO as $carpoolAdAdvertiserDTO) {
+                $advertiser = new User();
+                $advertiser->setId($carpoolAdAdvertiserDTO['id']);
+                $advertiser->setFirstname($carpoolAdAdvertiserDTO['firstname']);
+                $advertiser->setLastname($carpoolAdAdvertiserDTO['lastname']);
+                $carpoolAdAdvertiser[] = $advertiser;
+            }
+        }
+
+        return $carpoolAdAdvertiser;
     }
 }
