@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 23 nov. 2022 à 15:48
+-- Généré le : mer. 23 nov. 2022 à 17:13
 -- Version du serveur : 8.0.26-0ubuntu0.20.04.2
 -- Version de PHP : 8.0.10
 
@@ -185,21 +185,21 @@ ALTER TABLE `users`
 -- Contraintes pour la table `carpool_ads`
 --
 ALTER TABLE `carpool_ads`
-  ADD CONSTRAINT `idAdvertiser` FOREIGN KEY (`idAdvertiser`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `idCar` FOREIGN KEY (`idCar`) REFERENCES `cars` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `idAdvertiser` FOREIGN KEY (`idAdvertiser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `idCar` FOREIGN KEY (`idCar`) REFERENCES `cars` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `cars`
 --
 ALTER TABLE `cars`
-  ADD CONSTRAINT `idOwner` FOREIGN KEY (`idOwner`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `idOwner` FOREIGN KEY (`idOwner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `reservations`
 --
 ALTER TABLE `reservations`
-  ADD CONSTRAINT `idCarpoolAd` FOREIGN KEY (`idCarpoolAd`) REFERENCES `carpool_ads` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `idClient` FOREIGN KEY (`idClient`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `idCarpoolAd` FOREIGN KEY (`idCarpoolAd`) REFERENCES `carpool_ads` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `idClient` FOREIGN KEY (`idClient`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
