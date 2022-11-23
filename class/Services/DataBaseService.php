@@ -133,7 +133,7 @@ class DataBaseService
     {
         $carpoolAds = [];
 
-        $sql = 'SELECT `users`.`firstname` AS FirstnameAdvertiser, `users`.`lastname` AS LastnameAdvertiser, `cars`.`brand` AS BrandCars, `cars`.`model` AS ModelBrand, carpool_ads.* FROM carpool_ads 
+        $sql = 'SELECT `users`.`firstname` AS FirstnameAdvertiser, `users`.`lastname` AS LastnameAdvertiser, `cars`.`brand` AS BrandCar, `cars`.`model` AS ModelCar, carpool_ads.* FROM carpool_ads 
                 INNER JOIN users ON `carpool_ads`.`idAdvertiser` = `users`.`id`
                 INNER JOIN cars ON `carpool_ads`.`idCar` = `cars`.`id`';
         $query = $this->connection->query($sql);
