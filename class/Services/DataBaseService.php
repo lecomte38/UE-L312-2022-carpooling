@@ -133,7 +133,9 @@ class DataBaseService
     {
         $carpoolAds = [];
 
-        $sql = 'SELECT * FROM carpool_ads';
+        $sql = 'SELECT `users`.`firstname` AS FirstnameAdvertiser, `users`.`lastname` AS LastnameAdvertiser, `cars`.`brand` AS BrandCars, `cars`.`model` AS ModelBrand, carpool_ads.* FROM carpool_ads 
+                INNER JOIN users ON `carpool_ads`.`idAdvertiser` = `users`.`id`
+                INNER JOIN cars ON `carpool_ads`.`idCar` = `cars`.`id`';
         $query = $this->connection->query($sql);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         if (!empty($results)) {

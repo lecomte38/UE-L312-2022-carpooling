@@ -37,8 +37,10 @@ class CarpoolAdsService
                 $carpoolAd = new CarpoolAd();
                 $carpoolAd->setId($carpoolAdDTO['id']);
                 $carpoolAd->setName($carpoolAdDTO['name']);
-                $carpoolAd->setIdCar($carpoolAdDTO['idCar']);
-                $carpoolAd->setIdAdvertiser($carpoolAdDTO['idAdvertiser']);
+                $carpoolAd->setBrandCar($carpoolAdDTO['BrandCars']);
+                $carpoolAd->setModelCar($carpoolAdDTO['ModelBrand']);
+                $carpoolAd->setFirstnameAdvertiser($carpoolAdDTO['FirstnameAdvertiser']);
+                $carpoolAd->setLastnameAdvertiser($carpoolAdDTO['LastnameAdvertiser']);
                 $carpoolAd->setDeparturePlace($carpoolAdDTO['departurePlace']);
                 $carpoolAd->setArrivalPlace($carpoolAdDTO['arrivalPlace']);
                 $carpoolAds[] = $carpoolAd;

@@ -9,7 +9,11 @@ class CarpoolAd
     private $id;
     private $name;
     private $idCar;
+    private $brandCar;
+    private $modelCar;
     private $idAdvertiser;
+    private $firstnameAdvertiser;
+    private $lastnameAdvertiser;
     private $departurePlace;
     private $arrivalPlace;
 
@@ -25,28 +29,52 @@ class CarpoolAd
         $this->id = $id;
     }
 
-    // Getter of name
+    // Getter of id name
     public function getName(): string
     {
         return $this->name;
     }
 
-    // Setter of name
+    // Setter of id name
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    // Getter of car
+    // Getter of id car
     public function getIdCar(): string
     {
         return $this->idCar;
     }
 
-    // Setter of car
+    // Setter of id car
     public function setIdCar(string $idCar): void
     {
         $this->idCar = $idCar;
+    }
+
+    // Getter of id brand car
+    public function getBrandCar(): string
+    {
+        return $this->brandCar;
+    }
+
+    // Setter of id brand car
+    public function setBrandCar(string $brandCar): void
+    {
+        $this->brandCar = $brandCar;
+    }
+
+    // Getter of id model car
+    public function getModelCar(): string
+    {
+        return $this->modelCar;
+    }
+
+    // Setter of id model car
+    public function setModelCar(string $modelCar): void
+    {
+        $this->modelCar = $modelCar;
     }
 
     // Getter of advertiser
@@ -59,6 +87,30 @@ class CarpoolAd
     public function setIdAdvertiser(string $idAdvertiser): void
     {
         $this->idAdvertiser = $idAdvertiser;
+    }
+
+    // Getter of firstname Advertiser
+    public function getFirstnameAdvertiser(): string
+    {
+        return $this->firstnameAdvertiser;
+    }
+
+    // Setter of firstname Advertiser
+    public function setFirstnameAdvertiser(string $firstnameAdvertiser): void
+    {
+        $this->firstnameAdvertiser = $firstnameAdvertiser;
+    }
+
+    // Getter of lastname Advertiser
+    public function getLastnameAdvertiser(): string
+    {
+        return $this->lastnameAdvertiser;
+    }
+
+    // Setter of lastname Advertiser
+    public function setLastnameAdvertiser(string $lastnameAdvertiser): void
+    {
+        $this->lastnameAdvertiser = $lastnameAdvertiser;
     }
 
     // Getter of departure place
