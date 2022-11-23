@@ -50,12 +50,38 @@ class UsersController
 
         // Get html :
         foreach ($users as $user) {
+
+            // HTML of user cars
+            $carsHtml = '';
+            if (!empty($user->getCars())) {
+                foreach ($user->getCars() as $car) {
+                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel();
+                }
+            }
+
+            // HTML of user carpool ads
+            $carpoolAdsHtml = '';
+            if (!empty($user->getCarpoolAds())) {
+                foreach ($user->getCarpoolAds() as $carpoolAd) {
+                    $carpoolAdsHtml .= $carpoolAd->getName() . ' ';
+                }
+            }
+
+            // HTML of user reservations
+            $reservationsHtml = '';
+            if (!empty($user->getReservations())) {
+                foreach ($user->getReservations() as $reservation) {
+                    $reservationsHtml .= ' Réservation pour l\'annonce de covoiturage #' . $reservation->getIdCarpoolAd() . ' ';
+                }
+            }
+
             $html .=
                 '#' . $user->getId() . ' ' .
                 $user->getFirstname() . ' ' .
                 $user->getLastname() . ' ' .
                 $user->getEmail() . ' ' .
-                $user->getBirthday()->format('d-m-Y') . '<br />';
+                $user->getBirthday()->format('d-m-Y') . ' ' .
+                ' ' . $carsHtml . ' ' . $carpoolAdsHtml . ' ' . $reservationsHtml . '<br />';
         }
 
         return $html;

@@ -57,7 +57,7 @@ class DataBaseService
     {
         $users = [];
 
-        $sql = 'SELECT * FROM users';
+        $sql = 'SELECT *FROM users';
         $query = $this->connection->query($sql);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         if (!empty($results)) {
@@ -65,6 +65,78 @@ class DataBaseService
         }
 
         return $users;
+    }
+
+    /**
+     * Get cars of given user id.
+     */
+    public function getUserCars(string $userId): array
+    {
+        $userCars = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = 'SELECT *
+                FROM cars
+                LEFT JOIN users ON `users`.`id` = `cars`.`idOwner`
+                WHERE `users`.`id` = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userCars = $results;
+        }
+
+        return $userCars;
+    }
+
+    /**
+     * Get carpool ads of given user id.
+     */
+    public function getUserCarpoolAds(string $userId): array
+    {
+        $userCarpoolAds = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = 'SELECT *
+                FROM carpool_ads
+                LEFT JOIN users ON `users`.`id` = `carpool_ads`.`idAdvertiser`
+                WHERE `users`.`id` = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userCarpoolAds = $results;
+        }
+
+        return $userCarpoolAds;
+    }
+
+    /**
+     * Get reservations of given user id.
+     */
+    public function getUserReservations(string $userId): array
+    {
+        $userReservations = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = 'SELECT *
+                FROM reservations
+                LEFT JOIN users ON `users`.`id` = `reservations`.`idClient`
+                WHERE `users`.`id` = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userReservations = $results;
+        }
+
+        return $userReservations;
     }
 
     /**
