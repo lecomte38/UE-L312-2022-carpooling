@@ -225,7 +225,7 @@ class DataBaseService
         $data = [
             'carId' => $carId,
         ];
-        $sql = 'SELECT *
+        $sql = 'SELECT DISTINCT cars.*
                 FROM cars
                 LEFT JOIN carpool_ads ON `carpool_ads`.`idCar` = `cars`.`id`
                 WHERE `carpool_ads`.`idCar` = :carId';
@@ -249,7 +249,7 @@ class DataBaseService
         $data = [
             'advertiserId' => $advertiserId,
         ];
-        $sql = 'SELECT *
+        $sql = 'SELECT DISTINCT users.*
                 FROM users
                 LEFT JOIN carpool_ads ON `carpool_ads`.`idAdvertiser` = `users`.`id`
                 WHERE `carpool_ads`.`idAdvertiser` = :advertiserId';
@@ -349,7 +349,7 @@ class DataBaseService
         $data = [
             'ownerId' => $ownerId,
         ];
-        $sql = 'SELECT *
+        $sql = 'SELECT DISTINCT users.*
                 FROM users
                 LEFT JOIN cars ON `cars`.`idOwner` = `users`.`id`
                 WHERE `cars`.`idOwner` = :ownerId';
@@ -437,7 +437,7 @@ class DataBaseService
     }
 
     /**
-     * Get carpool ad car of given car id.
+     * Get carpool ad name of given carpool ad id.
      */
     public function getReservationCarpoolAdName(string $carpoolAdNameId): array
     {
@@ -446,7 +446,7 @@ class DataBaseService
         $data = [
             'carpoolAdNameId' => $carpoolAdNameId,
         ];
-        $sql = 'SELECT *
+        $sql = 'SELECT DISTINCT carpool_ads.*
                 FROM carpool_ads
                 LEFT JOIN reservations ON `reservations`.`idCarpoolAd` = `carpool_ads`.`id`
                 WHERE `reservations`.`idCarpoolAd` = :carpoolAdNameId';
@@ -461,7 +461,7 @@ class DataBaseService
     }
 
     /**
-     * Get client name of given client id.
+     * Get client name of given user id.
      */
     public function getReservationClient(string $clientId): array
     {
@@ -470,7 +470,7 @@ class DataBaseService
         $data = [
             'clientId' => $clientId,
         ];
-        $sql = 'SELECT *
+        $sql = 'SELECT DISTINCT users.*
                 FROM users
                 LEFT JOIN reservations ON `reservations`.`idClient` = `users`.`id`
                 WHERE `reservations`.`idClient` = :clientId';
