@@ -447,9 +447,9 @@ class DataBaseService
             'carpoolAdNameId' => $carpoolAdNameId,
         ];
         $sql = 'SELECT *
-                FROM carpoolAds
-                LEFT JOIN reservations ON `reservations`.`idCarpoolAdName` = `carpoolAds`.`id`
-                WHERE `reservations`.`idCarpoolAdName` = :carpoolAdNameId';
+                FROM carpool_ads
+                LEFT JOIN reservations ON `reservations`.`idCarpoolAd` = `carpool_ads`.`id`
+                WHERE `reservations`.`idCarpoolAd` = :carpoolAdNameId';
         $query = $this->connection->prepare($sql);
         $query->execute($data);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -473,7 +473,7 @@ class DataBaseService
         $sql = 'SELECT *
                 FROM users
                 LEFT JOIN reservations ON `reservations`.`idClient` = `users`.`id`
-                WHERE `reservations`.`idClients` = :clientId';
+                WHERE `reservations`.`idClient` = :clientId';
         $query = $this->connection->prepare($sql);
         $query->execute($data);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);

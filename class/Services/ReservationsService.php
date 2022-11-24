@@ -73,9 +73,9 @@ class ReservationsService
     /**
      * Get carpool ad car of given car id.
      */
-    public function getReservationCarpoolAdName(string $carId): array
+    public function getReservationCarpoolAdName(string $carpoolAdNameId): array
     {
-        $reservationCarpoolAdName = [];
+        $reservationsCarpoolAdName = [];
 
         $dataBaseService = new DataBaseService();
 
@@ -84,13 +84,13 @@ class ReservationsService
         if (!empty($reservationsCarpoolAdNameDTO)) {
             foreach ($reservationsCarpoolAdNameDTO as $reservationCarpoolAdNameDTO) {
                 $carpoolAdName = new CarpoolAd();
-                $carpoolAdName->setId($reservationsCarpoolAdNameDTO['id']);
-                $carpoolAdName->setName($reservationsCarpoolAdNameDTO['name']);
+                $carpoolAdName->setId($reservationCarpoolAdNameDTO['id']);
+                $carpoolAdName->setName($reservationCarpoolAdNameDTO['name']);
                 $reservationsCarpoolAdName[] = $carpoolAdName;
             }
         }
 
-        return $carpoolAdName;
+        return $reservationsCarpoolAdName;
     }
 
     /**
@@ -103,7 +103,7 @@ class ReservationsService
         $dataBaseService = new DataBaseService();
 
         // Get relation users and cars :
-        $carpoolAdsAdvertiserDTO = $dataBaseService->getReservationClient($clientId);
+        $reservationsClientDTO = $dataBaseService->getReservationClient($clientId);
         if (!empty($reservationsClientDTO)) {
             foreach ($reservationsClientDTO as $reservationClientDTO) {
                 $client = new User();

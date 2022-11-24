@@ -65,8 +65,8 @@ class ReservationsController
 
             $html .=
                 '#' . $reservation->getId() . ' ' .
-                '#' . $reservation->getCarpoolAdName() . ' ' .
-                '#' . $reservation->getClient() . ' ' . '<br />';
+                $carpoolAdNameHtml . ' ' .
+                $clientHtml . ' ' . '<br />';
         }
 
         return $html;
