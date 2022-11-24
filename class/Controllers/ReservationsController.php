@@ -46,10 +46,27 @@ class ReservationsController
 
         // Get html :
         foreach ($reservations as $reservation) {
+
+            // HTML of reservation ad carpoolAdName
+            $carpoolAdNameHtml = '';
+            if (!empty($reservation->getCarpoolAdName())) {
+                foreach ($reservation->getCarpoolAdName() as $carpoolAdName) {
+                    $carpoolAdNameHtml .= $carpoolAdName->getName();
+                }
+            }
+
+            // HTML of reservation ad client
+            $clientHtml = '';
+            if (!empty($reservation->getClient())) {
+                foreach ($reservation->getClient() as $client) {
+                    $clientHtml .= $client->getFirstname() . ' ' . $client->getLastname();
+                }
+            }
+
             $html .=
                 '#' . $reservation->getId() . ' ' .
-                '#' . $reservation->getIdCarpoolAd() . ' ' .
-                '#' . $reservation->getIdClient() . ' ' . '<br />';
+                '#' . $reservation->getCarpoolAdName() . ' ' .
+                '#' . $reservation->getClient() . ' ' . '<br />';
         }
 
         return $html;

@@ -9,6 +9,8 @@ class Reservation
     private $id;
     private $idCarpoolAd;
     private $idClient; 
+    private $carpoolAdName;
+    private $client;
 
     // Getter of id
     public function getId(): string
@@ -44,5 +46,29 @@ class Reservation
     public function setIdClient(string $idClient): void
     {
         $this->idClient = $idClient;
+    }
+    
+    // Getter of carpoolAdName
+    public function getCarpoolAdName(): ?array
+    {
+        return $this->carpoolAdName;
+    }
+
+    // Setter of carpoolAdName
+    public function setCarpoolAdName(array $carpoolAdName): void
+    {
+        $this->carpoolAdName = $carpoolAdName;
+    }
+
+    // Getter of client
+    public function getClient(): ?array
+    {
+        return $this->client;
+    }
+
+    // Setter of client
+    public function setClient(array $client): void
+    {
+        $this->client = $client;
     }
 }

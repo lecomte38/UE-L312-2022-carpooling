@@ -437,6 +437,54 @@ class DataBaseService
     }
 
     /**
+     * Get carpool ad car of given car id.
+     */
+    public function getReservationCarpoolAdName(string $carpoolAdNameId): array
+    {
+        $reservationCarpoolAdName = [];
+
+        $data = [
+            'carpoolAdNameId' => $carpoolAdNameId,
+        ];
+        $sql = 'SELECT *
+                FROM carpoolAds
+                LEFT JOIN reservations ON `reservations`.`idCarpoolAdName` = `carpoolAds`.`id`
+                WHERE `reservations`.`idCarpoolAdName` = :carpoolAdNameId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $reservationCarpoolAdName = $results;
+        }
+
+        return $reservationCarpoolAdName;
+    }
+
+    /**
+     * Get client name of given client id.
+     */
+    public function getReservationClient(string $clientId): array
+    {
+        $reservationClient = [];
+
+        $data = [
+            'clientId' => $clientId,
+        ];
+        $sql = 'SELECT *
+                FROM users
+                LEFT JOIN reservations ON `reservations`.`idClient` = `users`.`id`
+                WHERE `reservations`.`idClients` = :clientId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $reservationClient = $results;
+        }
+
+        return $reservationClient;
+    }
+
+    /**
      * Update a reservation.
      */
     public function updateReservation(string $id, string $idCarpoolAd, string $idClient): bool
