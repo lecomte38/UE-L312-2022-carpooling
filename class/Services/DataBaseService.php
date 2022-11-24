@@ -338,6 +338,30 @@ class DataBaseService
 
         return $cars;
     }
+
+    /**
+     * Get user name of given owner id.
+     */
+    public function getCarOwner(string $ownerId): array
+    {
+        $carOwner = [];
+
+        $data = [
+            'ownerId' => $ownerId,
+        ];
+        $sql = 'SELECT *
+                FROM users
+                LEFT JOIN cars ON `cars`.`idOwner` = `users`.`id`
+                WHERE `cars`.`idOwner` = :ownerId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $carOwner = $results;
+        }
+
+        return $carOwner;
+    }
     
     /**
      * Update a car.

@@ -50,12 +50,22 @@ class CarsController
 
         // Get html :
         foreach ($cars as $car) {
+
+            // HTML of carpool ad car
+            /**$ownerHtml = '';
+            if (!empty($car->getOwner())) {
+                foreach ($car->getOwner() as $owner) {
+                    $ownerHtml .= $owner->getFirstname() . ' ' . $owner->getLastname();
+                }
+            }
+*/
             $html .=
                 '#' . $car->getId() . ' ' .
                 $car->getBrand() . ' ' .
                 $car->getModel() . ' ' .
                 $car->getNbSeat() . ' ' .
-                $car->getIdOwner() . ' ' . '<br />';
+                $car->getIdOwner() . ' ' . 
+                /**$ownerHtml .*/ ' ' .'<br />';
         }
 
         return $html;

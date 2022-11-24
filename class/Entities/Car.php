@@ -11,6 +11,7 @@ class Car
     private $model;
     private $nbSeat;
     private $idOwner;
+    private $owner;
 
     // Getter of id
     public function getId(): string
@@ -70,5 +71,17 @@ class Car
     public function setIdOwner(string $idOwner): void
     {
         $this->idOwner = $idOwner;
+    }
+
+    // Getter of owner
+    public function getOwner(): string
+    {
+        return $this->owner;
+    }
+
+    // Setter of owner
+    public function setOwner(string $owner): void
+    {
+        $this->owner = $owner;
     }
 }

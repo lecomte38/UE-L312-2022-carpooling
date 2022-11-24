@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\Car;
+use App\Entities\User;
 
 class CarsService
 {
@@ -40,6 +41,12 @@ class CarsService
                 $car->setModel($carDTO['model']);
                 $car->setNbSeat($carDTO['nbSeat']);
                 $car->setIdOwner($carDTO['idOwner']);
+
+                // Get owner of this car :
+                $owner = $this->getCarOwner($carDTO['idOwner']);
+                $car->setOwner($owner);
+                
+
                 $cars[] = $car;
             }
         }
@@ -59,4 +66,27 @@ class CarsService
 
         return $isOk;
     }
-}
+
+    /**
+     * Get carpool ad car of given car id.
+     */
+    public function getCarOwner(string $ownerId): array
+    {
+        $carOwner = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and cars :
+        $carsOwnerDTO = $dataBaseService->getCarOwner($ownerId);
+        if (!empty($carsOwnerDTO)) {
+            foreach ($carsOwnerDTO as $carOwnerDTO) {
+                $owner = new User();
+                $owner->setId($carOwnerDTO['id']);
+                $owner->setFirstname($carOwnerDTO['firstname']);
+                $owner->setLastname($carOwnerDTO['lastname']);
+                $carOwner[] = $owner;
+            }
+        }
+
+        return $carOwner;
+    }
