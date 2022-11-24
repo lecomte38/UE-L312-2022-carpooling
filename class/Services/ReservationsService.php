@@ -40,7 +40,6 @@ class ReservationsService
                 $reservation->setId($reservationDTO['id']);
                 $reservation->setIdCarpoolAd($reservationDTO['idCarpoolAd']);
                 $reservation->setIdClient($reservationDTO['idClient']);
-                $reservations[] = $reservation;
 
                 // Get carpoolAdName of this reservation :
                 $carpoolAdName = $this->getReservationCarpoolAdName($reservationDTO['idCarpoolAd']);
