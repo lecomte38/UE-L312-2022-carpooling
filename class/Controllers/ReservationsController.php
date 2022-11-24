@@ -121,4 +121,24 @@ class ReservationsController
 
         return $html;
     }
+
+    /**
+     * Return the reservations list html for form.
+     */
+    public function getReservationsList(): string
+    {
+        $html = '';
+
+        // Get all carpool ads :
+        $reservationsService = new ReservationsService();
+        $reservations = $reservationsService->getReservations();
+
+        // Get html :
+        foreach ($reservations as $reservation) {
+
+            $html .= '<option value="' . $reservation->getId() . '">#' . $reservation->getId() . '</option>';
+        }
+
+        return $html;
+    }
 }

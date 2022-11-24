@@ -136,4 +136,24 @@ class CarpoolAdsController
 
         return $html;
     }
+
+    /**
+     * Return the carpool ads list html for form.
+     */
+    public function getCarpoolAdsList(): string
+    {
+        $html = '';
+
+        // Get all carpool ads :
+        $carpoolAdsService = new CarpoolAdsService();
+        $carpoolAds = $carpoolAdsService->getCarpoolAds();
+
+        // Get html :
+        foreach ($carpoolAds as $carpoolAd) {
+
+            $html .= '<option value="' . $carpoolAd->getId() . '">#' . $carpoolAd->getId() . ' - ' . $carpoolAd->getName() . '</option>';
+        }
+
+        return $html;
+    }
 }

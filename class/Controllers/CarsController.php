@@ -123,4 +123,24 @@ class CarsController
 
         return $html;
     }
+
+    /**
+     * Return the cars list html for form.
+     */
+    public function getCarsList(): string
+    {
+        $html = '';
+
+        // Get all cars :
+        $carsService = new CarsService();
+        $cars = $carsService->getCars();
+
+        // Get html :
+        foreach ($cars as $car) {
+
+            $html .= '<option value="' . $car->getId() . '">#' . $car->getId() . ' - ' . $car->getBrand() . ' ' . $car->getModel() . '</option>';
+        }
+
+        return $html;
+    }
 }

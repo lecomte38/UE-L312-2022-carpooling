@@ -140,4 +140,24 @@ class UsersController
 
         return $html;
     }
+
+    /**
+     * Return the users list html for form.
+     */
+    public function getUsersList(): string
+    {
+        $html = '';
+
+        // Get all users :
+        $usersService = new UsersService();
+        $users = $usersService->getUsers();
+
+        // Get html :
+        foreach ($users as $user) {
+
+            $html .= '<option value="' . $user->getId() . '">#' . $user->getId() . ' - ' . $user->getFirstname() . ' ' . $user->getLastname() . '</option>';
+        }
+
+        return $html;
+    }
 }

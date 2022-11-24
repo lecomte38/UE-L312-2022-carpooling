@@ -11,7 +11,10 @@ echo $controller->deleteCar();
 <p>Suppression d'une voiture</p>
 <form method="post" action="cars_delete.php" name ="carDeleteForm">
     <label for="id">Id :</label>
-    <input type="text" name="id">
+    <select name="id" required>
+        <option value="">Choisissez une voiture</option>
+        <?php echo $controller->getCarsList(); ?>
+    </select>
     <br />
     <input type="submit" value="Suppression d'une voiture">
 </form>

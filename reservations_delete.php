@@ -11,7 +11,10 @@ echo $controller->deleteReservation();
 <p>Supression d'une réservation</p>
 <form method="post" action="reservations_delete.php" name ="reservationDeleteForm">
     <label for="id">Id :</label>
-    <input type="text" name="id">
+    <select name="id" required>
+        <option value="">Choisissez un ID de réservation</option>
+        <?php echo $controller->getReservationsList(); ?>
+    </select>
     <br />
     <input type="submit" value="Supprimer une réservation">
 </form>
