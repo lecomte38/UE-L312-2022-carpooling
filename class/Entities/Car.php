@@ -74,13 +74,13 @@ class Car
     }
 
     // Getter of owner
-    public function getOwner(): string
+    public function getOwner(): ?array
     {
         return $this->owner;
     }
 
     // Setter of owner
-    public function setOwner(string $owner): void
+    public function setOwner(array $owner): void
     {
         $this->owner = $owner;
     }
