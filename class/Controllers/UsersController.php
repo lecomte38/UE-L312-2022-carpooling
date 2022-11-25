@@ -42,7 +42,22 @@ class UsersController
      */
     public function getUsers(): string
     {
-        $html = '';
+        $headerTab = '<table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Utlisateur</th>
+                                <th>Email</th>
+                                <th>Date de naissance</th>
+                                <th>Voitures</th>
+                                <th>Annonces de covoiturage postées</th>
+                                <th>Réservations</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+        $bodyTab = '';
+        $footerTab = '  <tbody>
+                      </table>';
 
         // Get all users :
         $usersService = new UsersService();
@@ -55,7 +70,7 @@ class UsersController
             $carsHtml = '';
             if (!empty($user->getCars())) {
                 foreach ($user->getCars() as $car) {
-                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel();
+                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . '<br/>';
                 }
             }
 
@@ -63,7 +78,7 @@ class UsersController
             $carpoolAdsHtml = '';
             if (!empty($user->getCarpoolAds())) {
                 foreach ($user->getCarpoolAds() as $carpoolAd) {
-                    $carpoolAdsHtml .= $carpoolAd->getName() . ' ';
+                    $carpoolAdsHtml .= $carpoolAd->getName() . '<br/>';
                 }
             }
 
@@ -71,18 +86,21 @@ class UsersController
             $reservationsHtml = '';
             if (!empty($user->getReservations())) {
                 foreach ($user->getReservations() as $reservation) {
-                    $reservationsHtml .= ' Réservation pour l\'annonce de covoiturage #' . $reservation->getIdCarpoolAd() . ' ';
+                    $reservationsHtml .= ' Réservation pour l\'annonce de covoiturage #' . $reservation->getIdCarpoolAd() . '<br/>';
                 }
             }
 
-            $html .=
-                '#' . $user->getId() . ' ' .
-                $user->getFirstname() . ' ' .
-                $user->getLastname() . ' ' .
-                $user->getEmail() . ' ' .
-                $user->getBirthday()->format('d-m-Y') . ' ' .
-                ' ' . $carsHtml . ' ' . $carpoolAdsHtml . ' ' . $reservationsHtml . '<br />';
+            $bodyTab .=
+                '<tr><td>#' . $user->getId() . '</td>' .
+                '<td>' . $user->getFirstname() . ' ' . $user->getLastname() . '</td>' .
+                '<td>' . $user->getEmail() . '</td>' .
+                '<td>' . $user->getBirthday()->format('d-m-Y') . '</td>' .
+                '<td>' . $carsHtml . '</td>' .
+                '<td>' . $carpoolAdsHtml . '</td>' .
+                '<td>' . $reservationsHtml . '</td></tr>';
         }
+
+        $html = $headerTab . $bodyTab . $footerTab;
 
         return $html;
     }
