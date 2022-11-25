@@ -44,7 +44,21 @@ class CarpoolAdsController
      */
     public function getCarpoolAds(): string
     {
-        $html = '';
+        $headerTab = '<table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titre de l\'annonce</th>
+                                <th>Voiture</th>
+                                <th>Annonceur</th>
+                                <th>Lieu de départ</th>
+                                <th>Lieu d\'arrivé</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+        $bodyTab = '';
+        $footerTab = '  <tbody>
+                      </table>';
 
         // Get all carpool ads :
         $carpoolAdsService = new CarpoolAdsService();
@@ -69,14 +83,16 @@ class CarpoolAdsController
                 }
             }
 
-            $html .=
-                '#' . $carpoolAd->getId() . ' ' .
-                $carpoolAd->getName() . ' ' .
-                $carHtml . ' ' .
-                $advertiserHtml . ' ' .
-                $carpoolAd->getDeparturePlace() . ' ' .
-                $carpoolAd->getArrivalPlace() . '<br />';
+            $bodyTab .=
+                '<tr><td>#' . $carpoolAd->getId() . '</td>' .
+                '<td>' . $carpoolAd->getName() . ' ' .
+                '<td>' . $carHtml . '</td>' .
+                '<td>' . $advertiserHtml . '</td>' .
+                '<td>' . $carpoolAd->getDeparturePlace() . '</td>' .
+                '<td>' . $carpoolAd->getArrivalPlace() . '</td></tr>';
         }
+
+        $html = $headerTab . $bodyTab . $footerTab;
 
         return $html;
     }
