@@ -68,7 +68,7 @@ class CarsService
     }
 
     /**
-     * Get carpool ad car of given car id.
+     * Get car owner of given car id.
      */
     public function getCarOwner(string $ownerId): array
     {

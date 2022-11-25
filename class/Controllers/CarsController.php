@@ -137,7 +137,6 @@ class CarsController
 
         // Get html :
         foreach ($cars as $car) {
-
             $html .= '<option value="' . $car->getId() . '">#' . $car->getId() . ' - ' . $car->getBrand() . ' ' . $car->getModel() . '</option>';
         }
 

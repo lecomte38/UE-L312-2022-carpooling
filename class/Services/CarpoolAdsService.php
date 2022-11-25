@@ -99,7 +99,7 @@ class CarpoolAdsService
     }
 
     /**
-     * Get user of given advertiser id.
+     * Get advertiser of given advertiser id.
      */
     public function getCarpoolAdAdvertiser(string $advertiserId): array
     {

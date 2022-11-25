@@ -135,7 +135,6 @@ class ReservationsController
 
         // Get html :
         foreach ($reservations as $reservation) {
-
             $html .= '<option value="' . $reservation->getId() . '">#' . $reservation->getId() . '</option>';
         }
 

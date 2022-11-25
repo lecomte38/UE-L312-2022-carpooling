@@ -70,7 +70,7 @@ class ReservationsService
     }
 
     /**
-     * Get carpool ad car of given car id.
+     * Get carpool ad car of given carpool ad id.
      */
     public function getReservationCarpoolAdName(string $carpoolAdNameId): array
     {
@@ -93,7 +93,7 @@ class ReservationsService
     }
 
     /**
-     * Get user of given advertiser id.
+     * Get user of given client id.
      */
     public function getReservationClient(string $clientId): array
     {

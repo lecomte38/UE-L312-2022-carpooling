@@ -150,7 +150,6 @@ class CarpoolAdsController
 
         // Get html :
         foreach ($carpoolAds as $carpoolAd) {
-
             $html .= '<option value="' . $carpoolAd->getId() . '">#' . $carpoolAd->getId() . ' - ' . $carpoolAd->getName() . '</option>';
         }
 

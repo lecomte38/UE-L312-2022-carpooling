@@ -154,7 +154,6 @@ class UsersController
 
         // Get html :
         foreach ($users as $user) {
-
             $html .= '<option value="' . $user->getId() . '">#' . $user->getId() . ' - ' . $user->getFirstname() . ' ' . $user->getLastname() . '</option>';
         }
 
