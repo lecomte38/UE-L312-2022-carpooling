@@ -38,7 +38,18 @@ class ReservationsController
      */
     public function getReservations(): string
     {
-        $html = '';
+        $headerTab = '<table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Annonce de covoiturage</th>
+                                <th>Client</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+        $bodyTab = '';
+        $footerTab = '  <tbody>
+                      </table>';
 
         // Get all reservations :
         $reservationsService = new ReservationsService();
@@ -63,11 +74,13 @@ class ReservationsController
                 }
             }
 
-            $html .=
-                '#' . $reservation->getId() . ' ' .
-                $carpoolAdNameHtml . ' ' .
-                $clientHtml . ' ' . '<br />';
+            $bodyTab .=
+                '<tr><td>#' . $reservation->getId() . '</td>' .
+                '<td>' . $carpoolAdNameHtml . '</td>' .
+                '<td>' . $clientHtml . '</td></tr>';
         }
+
+        $html = $headerTab . $bodyTab . $footerTab;
 
         return $html;
     }
