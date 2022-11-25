@@ -22,7 +22,7 @@ class CarsController
             $CarsService = new CarsService();
             $isOk = $CarsService->setCar(
                 null,
-                $_POST['brand'],
+                strtoupper($_POST['brand']),
                 $_POST['model'],
                 $_POST['nbSeat'],
                 $_POST['idOwner']
@@ -42,7 +42,20 @@ class CarsController
      */
     public function getCars(): string
     {
-        $html = '';
+        $headerTab = '<table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Marque</th>
+                                <th>Modèle</th>
+                                <th>Nombre de place</th>
+                                <th>Propriétaire</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+        $bodyTab = '';
+        $footerTab = '  <tbody>
+                      </table>';
 
         // Get all cars :
         $CarsService = new CarsService();
@@ -59,13 +72,15 @@ class CarsController
                 }
             }
 
-            $html .=
-                '#' . $car->getId() . ' ' .
-                $car->getBrand() . ' ' .
-                $car->getModel() . ' ' .
-                $car->getNbSeat() . ' ' . 
-                $ownerHtml . ' ' .'<br />';
+            $bodyTab .=
+                '<tr><td>#' . $car->getId() . '</td>' .
+                '<td>' . $car->getBrand() . '</td>' .
+                '<td>' . $car->getModel() . '</td>' .
+                '<td>' . $car->getNbSeat() . '</td>' . 
+                '<td>' . $ownerHtml .'</td></tr>';
         }
+
+        $html = $headerTab . $bodyTab . $footerTab;
 
         return $html;
     }
@@ -87,7 +102,7 @@ class CarsController
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 $_POST['id'],
-                $_POST['brand'],
+                strtoupper($_POST['brand']),
                 $_POST['model'],
                 $_POST['nbSeat'],
                 $_POST['idOwner']
